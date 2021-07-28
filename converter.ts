@@ -32,7 +32,6 @@ export class CurrencyConverter {
         }
         const directRate = this.getDirectRate(firstCurrency, secondCurrency);
         if (directRate) {
-            console.log('direct rate found', firstCurrency, secondCurrency, directRate);
             return { complexity, rate: directRate };
         }
         for (let pair in this.rates) {
@@ -41,7 +40,6 @@ export class CurrencyConverter {
                 const firstRate = this.getDirectRate(firstCurrency, `${crossCurrency}`);
                 const crossRate = this.getExchange(`${crossCurrency}`, secondCurrency);
                 if (crossRate.rate !== 0) {
-                    console.log('crossrate found', firstCurrency, crossCurrency, firstRate, crossRate.rate);
                     return { complexity: complexity + 1, rate: firstRate * crossRate.rate };
                 }
             }
